@@ -7,13 +7,17 @@ on:
 
 jobs:
   test:
-    runs-on: ununtu-latest
+    runs-on: ubuntu-latest  # Fixed typo
     container:
       image: node:20
     steps:
       - uses: actions/checkout@v3
-      with:
-        node-version: 20
-      - run: npm ci 
+      
+      # If you want to specify node version, use setup-node
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+          
+      - run: npm ci
       - run: npm test
-      - run: npm build
+      - run: npm run build  # Changed from "npm build" to "npm run build"
